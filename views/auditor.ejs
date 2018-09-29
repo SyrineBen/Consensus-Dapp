@@ -1,0 +1,221 @@
+<html>
+
+<head>
+  <title>Auditor</title>
+  <meta charset="utf-8" />
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+  <center>
+    <p>
+      <h2>Auditor Account</h2></p>
+    <p>
+  </center>
+  <p>
+    <center>
+      <h3>Overview of data from Blockchain</p>
+  <table class="table table-bordered">
+    <tr>
+      <th>Client ID</th>
+      <th>Pack</th>
+      <th>Allowed actions</th>
+      <th>Date</th>
+      <th>Client ID</th>
+      <th>Actions done by the provider</th>
+      <th>Date</th>
+    </tr>
+    <% if(idBC.length){
+    for(var i = 0; i < idBC.length; i++) { %>
+      <tr>
+        <td>
+          <%=idBC[i].id%>
+        </td>
+        <td>
+          <% if(packBC[i].length){
+          for(var j = 0; j < packBC[i].length; j++) { %>
+             <%=packBC[i][j]%> <hr> <% }} %>
+        </td>
+        <td>
+          <% if(actionsBC[i].length){
+          for(var j = 0; j < actionsBC[i].length; j++) { %>
+             <%=actionsBC[i][j]%> <hr> <% }} %>
+        </td>
+        <td>
+          <% if(datesChosenActionsBC[i].length){
+          for(var j = 0; j < datesChosenActionsBC[i].length; j++) { %>
+            <%=datesChosenActionsBC[i][j]%> <hr> <% }} %>
+        </td>
+        <td>
+          <%=idBC[i].id%>
+        </td>
+        <td>
+          <% if(doneActionsBC[i].length){
+          for(var j = 0; j < doneActionsBC[i].length; j++) {
+            if (doneActionsBC[i][j][0] == "Not Allowed!") { %>
+            <p style="color:Tomato;"><%=doneActionsBC[i][j][1]%> </p> <hr> <% }
+            else { %> <p style="color:MediumSeaGreen;"><%=doneActionsBC[i][j][1]%> </p> <hr> <% }}} %>
+        </td>
+        <td>
+          <% if(datesDoneActionsBC[i].length){
+          for(var j = 0; j < datesDoneActionsBC[i].length; j++) { %>
+            <%=datesDoneActionsBC[i][j]%> <hr> <% }} %>
+        </td>
+      </tr>
+      <% }
+  }else{ %>
+        <tr>
+          <td>No users</td>
+        </tr>
+        <% } %>
+  </table>
+  <br>
+  <h3>Clients' allowed-actions choices details</p>
+<table class="table table-bordered" style="white-space:nowrap;">
+<tr>
+  <th>Client ID</th>
+  <th>Allowed actions</th>
+  <th>Date</th>
+  <th>Transaction</th>
+  <th>Client Address</th>
+</tr>
+<% if(idBC.length){
+for(var i = 0; i < idBC.length; i++) { %>
+  <tr>
+    <td>
+      <%=idBC[i].id%>
+    </td>
+    <td>
+      <% if(actionsBC[i].length){
+      for(var j = 0; j < actionsBC[i].length; j++) { %>
+        <%=actionsBC[i][j]%> <hr> <% }} %>
+    </td>
+    <td>
+      <% if(datesChosenActionsBC[i].length){
+      for(var j = 0; j < datesChosenActionsBC[i].length; j++) { %>
+        <%=datesChosenActionsBC[i][j]%> <hr> <% }} %>
+    </td>
+    <td>
+      <% if(actionsTxBC[i].length){
+      for(var j = 0; j < actionsTxBC[i].length; j++) { %>
+        <%=actionsTxBC[i][j]%> <hr> <% }} %>
+    </td>
+    <td>
+      <%=idBC[i].address%>
+    </td>
+  </tr>
+  <% }
+}else{ %>
+    <tr>
+      <td>No users</td>
+    </tr>
+    <% } %>
+</table>
+<br>
+<h3>The Service Provider actions done details</p>
+<table class="table table-bordered" style="white-space:nowrap;">
+<tr>
+  <th>Client ID</th>
+  <th>Actions done</th>
+  <th>Permission</th>
+  <th>Date</th>
+  <th>Transaction</th>
+</tr>
+<% if(idBC.length){
+for(var i = 0; i < idBC.length; i++) { %>
+  <tr>
+    <td>
+      <%=idBC[i].id%>
+    </td>
+    <td>
+      <% if(doneActionsBC[i].length){
+      for(var j = 0; j < doneActionsBC[i].length; j++) { %>
+        <%=doneActionsBC[i][j][1]%> <hr> <% }} %>
+    </td>
+    <td>
+      <% if(doneActionsBC[i].length){
+      for(var j = 0; j < doneActionsBC[i].length; j++) { %>
+        <%=doneActionsBC[i][j][0]%> <hr> <% }} %>
+    </td>
+    <td>
+      <% if(datesDoneActionsBC[i].length){
+      for(var j = 0; j < datesDoneActionsBC[i].length; j++) { %>
+        <%=datesDoneActionsBC[i][j]%> <hr> <% }} %>
+    </td>
+    <td>
+      <% if(doneActionsTxBC[i].length){
+      for(var j = 0; j < doneActionsTxBC[i].length; j++) { %>
+        <%=doneActionsTxBC[i][j]%> <hr> <% }} %>
+    </td>
+  </tr>
+  <% }
+}else{ %>
+    <tr>
+      <td>No users</td>
+    </tr>
+    <% } %>
+</table>
+<br>
+  <p><center><h3>Service Provider database</p>
+  <table class="table table-bordered">
+    <tr>
+      <th>Client ID</th>
+      <th>Pack</th>
+      <th>Allowed actions</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Gender</th>
+      <th>Phone</th>
+      <th>Address</th>
+      <th>Nationality</th>
+      <th>Social status</th>
+      <th>Civil status</th>
+    </tr>
+    <% if(dataDB1.length){
+    for(var i = 0;i < dataDB1[0].values.length;i++) { %>
+      <tr>
+        <td>
+          <%=dataDB1[0].values[i][0]%>
+        </td>
+        <td>
+          <%=dataDB1[0].values[i][1]%>
+        </td>
+        <td>
+          <%=dataDB1[0].values[i][2]%>
+        </td>
+        <td>
+          <%=dataDB2[0].values[i][1]%>
+        </td>
+        <td>
+          <%=dataDB2[0].values[i][2]%>
+        </td>
+        <td>
+          <%=dataDB2[0].values[i][3]%>
+        </td>
+        <td>
+          <%=dataDB2[0].values[i][4]%>
+        </td>
+        <td>
+          <%=dataDB2[0].values[i][5]%>
+        </td>
+        <td>
+          <%=dataDB2[0].values[i][6]%>
+        </td>
+        <td>
+          <%=dataDB2[0].values[i][7]%>
+        </td>
+        <td>
+          <%=dataDB2[0].values[i][8]%>
+        </td>
+      </tr>
+      <% }
+  }else{ %>
+        <tr>
+          <td>No users</td>
+        </tr>
+        <% } %>
+  </table>
+</body>
+
+</html>
